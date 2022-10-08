@@ -1,12 +1,12 @@
-todo_list = []
-while True:
-    print("What do you need to do?")
-    add_todo = input("")
-    todo_list.append(add_todo)
-    for item in todo_list:
-        print(item)
-    print()
+def add_to_list(list_item):
+    todo_list = []
+    todo_list.append(list_item)
+    for index, item in enumerate(todo_list):
+        print(f"{index+1}. {item}")
 
-    if add_todo == f"{add_todo} completed":
-        del add_todo
-        print(todo_list)
+
+while True:
+    print("What do you need to get done?")
+    add_to_list(input(""))
+    if add_to_list() == "0":
+        break
