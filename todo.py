@@ -40,11 +40,24 @@ def remove_from_list(item_to_remove: str) -> list:
         print()
 
 
+def store_list(item_list: list) -> list:
+    """Update a txt file where program is installed. Txt file will store the users
+    current to-do list. The text file will update each time the list is updated.
+    """
+    filename = "store_list.txt"
+    with open(filename, "w", encoding="utf-8") as txt_file:
+        for item in item_list:
+            print(item, file=txt_file)
+
+
 t_list = "That task is not on the list"
 
 # For loop that requests a users input to add or remove task to list.
 # "add:..." will add an item to the list "remove:..." will remove an
-# item from the list
+# item from the list. Capitalization does not matter. Intended action
+# and item being added/removed must be separated by a colon(:)
+# ex. add: coding
+# ex. remove: coding
 while True:
     user_input = input("What do you need to get done?\n")
     if user_input.casefold() == 'close':
