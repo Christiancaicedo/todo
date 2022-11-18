@@ -1,4 +1,19 @@
+import atexit
+
 todo_list = []
+filename = "store_list.txt"
+t_list = "That task is not on the list"
+
+with open(filename, 'r', encoding='utf-8') as txt_file:
+    if txt_file != "":
+        print("Welcome back. Here is your current to-do list:")
+        
+    for index, item in enumerate(txt_file):
+        if item == "":
+            pass
+        else:
+            todo_list.append(item.rstrip('\n'))
+            print(f"{index+1}. {item}")
 
 
 def add_to_list(list_item: str) -> list:
@@ -41,16 +56,22 @@ def remove_from_list(item_to_remove: str) -> list:
 
 
 def store_list(item_list: list) -> list:
-    """Update a txt file where program is installed. Txt file will store the users
-    current to-do list. The text file will update each time the list is updated.
+    """Create/update a txt file where program is stored. Txt file will store the users
+    current to-do list once the program exits using "close" or any other way to exit within Python. 
     """
     filename = "store_list.txt"
     with open(filename, "w", encoding="utf-8") as txt_file:
         for item in item_list:
             print(item, file=txt_file)
+            
 
+# def pull_stored_list(resume_list: list) -> list:
+#     """Pulls the currently stored to-do list from a text file previously created/updated
+#     when the original program was ended.
+#     """
+    # with open(filename, 'r', encoding='utf-8') as txt_file:
+    #     for item in txt_file:
 
-t_list = "That task is not on the list"
 
 # For loop that requests a users input to add or remove task to list.
 # "add:..." will add an item to the list "remove:..." will remove an
@@ -72,3 +93,5 @@ while True:
         print()
         print(f"{t_list}_^10")
         print()
+        
+atexit.register(store_list,todo_list)
