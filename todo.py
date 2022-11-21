@@ -66,6 +66,7 @@ def clear_list(clear: list) -> list:
     """Clear all items in current to-do list"""
     while todo_list:
         todo_list.pop()
+    print()
     print("Your to-do list has been cleared")
     print()
 
@@ -110,9 +111,12 @@ while True:
             print()
             print(f"{t_list}_^10")
             print()
-    else:
+    elif user_input.casefold() == "clear" or user_input.casefold() == "clear list":
         clear_list(user_input)
         store_list(todo_list)
-
+    else:
+        print()
+        print("That input is not acceptable. Please specify if you are adding, removing or clearing the list.")
+        print()
 
 atexit.register(store_list, todo_list)
